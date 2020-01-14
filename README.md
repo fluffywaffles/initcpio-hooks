@@ -23,7 +23,7 @@ don't encrypt are `/boot/efi`, which cannot be encrypted unless... well, I
 dunno, unless you flash your own BIOS I guess... and my swapspace. (I'm
 just not paranoid enough to bother encrypting swap.)
 
-A nice feature of btrfs is subvolumes. These allow multiple logical
+A nice feature of btrfs is subvolumes. This allows multiple logical
 hard-drives to be kept together on a single physical disk partition. It's
 similar in principle to Linux Logical Volume Manager (LVM), but with
 additional features from btrfs (like snapshotting, etc.). Subvolumes can
