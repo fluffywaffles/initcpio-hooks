@@ -31,7 +31,7 @@ be mounted, backed up, defragmented, and in just about every way, treated,
 as entirely independent disks.
 
 I decided to create subvolumes for `/`, `/bin`, `/lib`, `/etc`, `/var`,
-`/home`, and a snapshot storage space at `/snapshots`. This will allow be
+`/home`, and a snapshot storage space at `/snapshots`. This will allow me
 to keep my binaries, libraries, settings, cache-files and logs, and home
 directories, all separate. So, if I want to wipe out `/var`, I can just...
 unmount it, and mount a backup in its place. Same for `/bin`, or `/lib`,
