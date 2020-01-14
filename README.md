@@ -41,13 +41,17 @@ The trouble with doing this is: once you've entered your initramfs, and
 you want to invoke `switch_root`, you need your entire File System
 Hierarchy (FHS; see `man 7 file-hierarchy`) to be mounted at the new root.
 In particular, you need `/sbin/init` and `/etc/fstab`, at the very least,
-to get your system up-and-running correctly.
+to get your system up and running correctly.
 
 The best way to hook into the initramfs and teach it to mount my new
 subvolumes in their correct places before trying to invoke `switch_root`
-was with initcpio hooks. And so, here we are!
+was with initcpio hooks, provided to `mkinitcpio` in my
+`/etc/mkinitcpio.conf` in the `HOOKS` array. And so, here we are!
 
-mount-numen does the following:
+mount-numen does the following, assuming that you have encrypted your root
+partition using the built-in `encrypt` initcpio hook (which it copies from
+so it can parse your encrypted drive's location from your `encrypt`
+configuration, without your needing to specify it a 2nd time):
 
 - mounts subvolume `@lib` at `/new_root/usr/lib` (in Arch, `lib` is a
   symlink to `/usr/lib`)
