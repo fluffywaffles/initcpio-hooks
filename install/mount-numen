@@ -1,0 +1,22 @@
+#!/bin/bash
+
+build() {
+    add_runscript
+}
+
+help() {
+    cat <<HELPEOF
+This is a custom initcpio hook for mounting @bin, @lib, @var, and @etc
+subvolumes to /usr/bin, /usr/lib, /var, and /etc, respectively, into the
+/new_root of an initramfs after the encrypted btrfs device @root subvolume
+has been mounted to /new_root. This custom hook is designed specifically
+for numen, and it's inadvisable to try to use it or adapt it for your own
+system. It's unclear, frankly, whether ALL of these subvolumes need to be
+nmounted in the initramfs -- probably, /var could be left out. Or, your
+computer will implode. Hard to say, really. You're welcome, the internet!
+
+GH:@fluffywaffles made this.
+HELPEOF
+}
+
+# vim: set ft=sh ts=4 sw=4 et:

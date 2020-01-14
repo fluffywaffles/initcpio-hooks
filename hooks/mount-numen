@@ -1,0 +1,23 @@
+#!/usr/bin/ash
+
+run_latehook() {
+	# NOTE(jordan): stolen from `/usr/lib/initcpio/hooks/encrypt'
+	IFS=: read cryptdev cryptname cryptoptions <<EOF
+$cryptdevice
+EOF
+
+	# NOTE(jordan): this is tremendously un-robust! Good for us.
+	# NOTE(jordan): improvement: parseable mountpoints, like DEV:NAME:OPTS akin to encrypt hook
+	mountopts="rw,relatime,ssd,space_cache"	
+
+	msg "→ mounting subvolume '@bin' of '$cryptdev' at '/usr/bin'"
+	mount -o "$mountopts,subvolid=259,subvol=@bin" /dev/mapper/$cryptname /new_root/usr/bin
+	msg "→ mounting subvolume '@lib' of '$cryptdev' at '/usr/lib'"
+	mount -o "$mountopts,subvolid=260,subvol=@lib" /dev/mapper/$cryptname /new_root/usr/lib
+	msg "→ mounting subvolume '@var' of '$cryptdev' at '/var'"
+	mount -o "$mountopts,subvolid=258,subvol=@var" /dev/mapper/$cryptname /new_root/var
+	msg "→ mounting subvolume '@etc' of '$cryptdev' at '/etc'"
+	mount -o "$mountopts,subvolid=261,subvol=@etc" /dev/mapper/$cryptname /new_root/etc
+}
+
+# vim: set ft=sh ts=4 sw=4 et:
